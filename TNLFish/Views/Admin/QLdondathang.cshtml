@@ -1,0 +1,102 @@
+﻿@using TNLFish.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<DONDATHANG>
+
+@{
+    ViewBag.Title = "Quản lý đơn đặt hàng";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    th {
+        text-align: center;
+        color: red;
+    }
+</style>
+
+<h2>QUẢN LÝ ĐƠN ĐẶT HÀNG</h2>
+
+<p>
+    <a class="btn btn-outline-danger" href="@Url.Action("Themddh", "Admin")">THÊM MỚI</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã đơn hàng
+        </th>
+        <th>
+            Đã thanh toán
+        </th>
+        <th>
+            Tình trạng giao hàng
+        </th>
+        <th>
+            Ngày đặt hàng
+        </th>
+        <th>
+            Ngày giao hàng
+        </th>
+        <th>
+            Khách hàng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDonHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dathanhtoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tinhtranggiaohang)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.Ngaydat)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.Ngaygiao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.Taikhoan)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Suaddh", new { id=item.MaDonHang }) |
+                @Html.ActionLink("Chi tiết", "Chitietddh", new { id = item.MaDonHang }) |
+                @Html.ActionLink("Xóa", "Xoaddh", new { id = item.MaDonHang })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* Tạo liên kết các trang *@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("QLdondathang", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+    }
+
+        .MenuTrang li {
+            display: inline;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 5px 15px;
+            margin: 2px;
+        }
+
+            .MenuTrang li.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+</style>

@@ -1,0 +1,153 @@
+﻿@model TNLFish.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <title>Register - TNLFish Store</title>
+
+    <!-- Favicon -->
+    <link href="~/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/www/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/www/css/style.css" rel="stylesheet">
+
+    <script src="~/Views/Nguoidung/CheckInputRegister.js"></script>
+    <style>
+        .input-row.success input {
+            border-color: #2ecc71;
+        }
+
+        .input-row.error input {
+            border-color: #e74c3c;
+        }
+
+        .input-row small {
+            color: #e74c3c;
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            visibility: hidden;
+            font-size: 12px;
+        }
+
+        .input-row.error small {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="alert alert-info" style="text-align:center; font-size:35px;">
+        <strong>ĐĂNG KÝ THÀNH VIÊN</strong>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+            <table align="center">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <tr class="input-row" style="height:40px;">
+                        <td>Họ tên khách hàng:</td>
+                        <td>
+                            <input id="HoTenKH" type="text" name="HoTenKH" placeholder="Nhập họ tên!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi1"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Tên đăng nhập:</td>
+                        <td>
+                            <input id="TenDN" type="text" name="TenDN" placeholder="Nhập tên đăng nhập!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi2"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Mật khẩu:</td>
+                        <td>
+                            <input id="MatKhau" type="password" name="MatKhau" placeholder="Hãy nhập mật khẩu!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi3"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Xác nhận mật khẩu:</td>
+                        <td>
+                            <input id="XNMatKhau" type="password" name="XNMatKhau" placeholder="Xác nhận lại mật Khẩu!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi4"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Email:</td>
+                        <td>
+                            <input id="Email" type="text" name="Email" placeholder="Nhập Email của bạn!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi5"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Địa chỉ:</td>
+                        <td>
+                            <input id="DiaChi" type="text" name="DiaChi" placeholder="Nhập địa chỉ!" autocomplete="off"/>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Điện thoại:</td>
+                        <td>
+                            <input id="DienThoai" type="text" name="DienThoai" placeholder="Nhập số điện thoại!" autocomplete="off"/>
+                            <br />
+                            @ViewData["Loi6"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td>Ngày sinh:</td>
+                        <td>
+                            <input id="NgaySinh" type="date" name="NgaySinh" />
+                            <br />
+                            @ViewData["Loi7"]
+                            <small>Error message</small>
+                        </td>
+                    </tr>
+                    <tr class="input-row" style="height:40px;">
+                        <td></td>
+                        <td>
+                            <input id="btn-register" class="btn btn-success" type="submit" value="Đăng ký" />
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-warning">Trang chủ</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+            <img style="width: 700px;" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                 class="img-fluid" alt="Sample image">
+        </div>
+    </div>
+</body>
+</html>

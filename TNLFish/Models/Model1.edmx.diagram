@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8226f286937b443a8e782a63a5feffe4" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopCaCanhModel.CHITIETDONTHANG" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.DONDATHANG" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.dong_ca" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.loai_ca" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="ShopCaCanhModel.FK_Donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopCaCanhModel.FK_Loaica_CTDH" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopCaCanhModel.FK_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopCaCanhModel.FK_Dongca" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ShopCaCanhModel.ADMIN" Width="1.5" PointX="7.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

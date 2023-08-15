@@ -1,0 +1,90 @@
+﻿@using TNLFish.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<CHITIETDONTHANG>
+
+@{
+    ViewBag.Title = "Quản lý Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    th {
+        text-align: center;
+        color: red;
+    }
+</style>
+
+<h2>QUẢN LÝ CHI TIẾT ĐƠN HÀNG</h2>
+
+<p>
+    <a class="btn btn-outline-danger" href="@Url.Action("Themctdh", "Admin")">THÊM MỚI</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã đơn hàng
+        </th>
+        <th>
+            Loại cá
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONDATHANG.MaDonHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.loai_ca.fish_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Dongia) VNĐ
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Suactdh", new { id = item.DONDATHANG.MaDonHang }) |
+                @Html.ActionLink("Chi tiết", "Chitietdh", new { id = item.DONDATHANG.MaDonHang }) |
+                @Html.ActionLink("Xóa", "Xoactdh", new { id = item.DONDATHANG.MaDonHang })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* Tạo liên kết các trang *@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("QLctdonhang", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+    }
+
+        .MenuTrang li {
+            display: inline;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 5px 15px;
+            margin: 2px;
+        }
+
+            .MenuTrang li.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+</style>

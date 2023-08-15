@@ -1,0 +1,83 @@
+﻿@model TNLFish.Models.MailModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message");
+    </script>
+}
+
+<!-- Page Header Start -->
+<div id="contact" class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Liên hệ chúng tôi</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="@Url.Action("Index", "Home")">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Contact</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Contact Start -->
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Mọi thắc mắc xin liên hệ</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col-lg-7 mb-5">
+            <div class="contact-form">
+                <div id="success"></div>
+                <span style="color: red;">@ViewBag.Message</span>
+                @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.ValidationSummary()
+                    <div class="control-group">
+                        <input type="text" class="form-control" id="name" placeholder="Họ tên"
+                               required="required" data-validation-required-message="Please enter your name" />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        @Html.TextBoxFor(m => m.From, new { @class = "form-control", @placeholder = "Email" })
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", @placeholder = "Vấn đề" })
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        @Html.TextAreaFor(m => m.Body, new { rows = "7", cols = "7", @class = "form-control", @placeholder = "Lời nhắn" })
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div>
+                        <button class="btn btn-success py-2 px-4" type="submit" id="sendMessageButton">
+                            Gửi lời nhắn
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-5 mb-5">
+            <h5 class="font-weight-semi-bold mb-3">Chào mừng bạn!</h5>
+            <p style="text-align:justify; text-indent: 15px;">Chất lượng sản phẩm và trải nghiệm của khách hàng luôn là mối quan tâm được đặt lên hàng đầu ở cửa hàng chúng tôi!</p>
+            <div class="d-flex flex-column mb-3">
+                <h5 class="font-weight-semi-bold mb-3">Chi nhánh 1</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-success mr-3"></i>212 Lê Đức Thọ, P.15, Q. Gò Vấp, Tp.HCM</p>
+                <p class="mb-2"><i class="fa fa-envelope text-success mr-3"></i>tnlfish20422@gmail.com</p>
+                <p class="mb-2"><i class="fa fa-phone-alt text-success mr-3"></i>0395373389</p>
+            </div>
+            <div class="d-flex flex-column">
+                <h5 class="font-weight-semi-bold mb-3">Chi nhánh 2</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-success mr-3"></i>143 Trung Nghĩa, Xuân Lộc, Đồng Nai</p>
+                <p class="mb-2"><i class="fa fa-envelope text-success mr-3"></i>nguyenluan0101020@gmail.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-success mr-3"></i>0902515255</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

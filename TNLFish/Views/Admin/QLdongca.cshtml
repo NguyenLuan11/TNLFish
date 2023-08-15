@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TNLFish.Models.dong_ca>
+
+@{
+    ViewBag.Title = "Quản lý dòng cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    th {
+        text-align: center;
+        color: red;
+    }
+</style>
+
+<h2>QUẢN LÝ DÒNG CÁ</h2>
+
+<p>
+    <a class="btn btn-outline-danger" href="@Url.Action("Themdongca", "Admin")">THÊM MỚI</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã cá
+        </th>
+        <th>
+            Tên dòng cá
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaCa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDongCa)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.MaCa }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaCa }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.MaCa })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>@ViewData["Title"] - TNLFish Store</title>
+
+    <!-- Favicon -->
+    <link href="~/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/www/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/www/css/style.css" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-3 px-xl-5">
+            <section class="top-page clearfix">
+                <div class="container">
+                    <div class="flex-top">
+                        <div class="address cl-white w-100i">
+                            <marquee class="slogan-top ds-block" direction="left" amoutscroll="3">
+                                <i class="fa fa-map-marker-alt text-success" aria-hidden="true"></i>
+                                &nbsp;CỬA HÀNG CÁ CẢNH THUỶ SINH TNLFISH XIN KÍNH CHÀO QUÝ KHÁCH!!!
+                            </marquee>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-phone-alt text-success mr-3"></i>0395373389
+                    <i style="margin-left: 10px;" class="fa fa-envelope text-success mr-3"></i>tnlfish20422@gmail.com
+
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <img style="width: 200px; height: 190px;" src="~/img/logo.png" alt="Logo" />
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                @using (Html.BeginForm("Search", "Home"))
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" value="@ViewBag.keyWord" placeholder="Tìm kiếm . . .">
+                        <button class="btn btn-outline-success"><i class="fa fa-search"></i></button>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                @Html.Action("GiohangPartial", "Cart")
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid mb-5">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-success text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Danh mục sách</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+
+                @Html.Action("Dongca", "Buy")
+
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a style="color: red; font-weight: bold;" href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Trang chủ</a>
+                            <a style="color:darkgreen;" href="@Url.Action("Index", "Buy")/#buy" class="nav-item nav-link">Mua hàng</a>
+                            <div class="nav-item dropdown">
+                                <a style="color: darkgreen;" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Bài viết</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="@Url.Action("HdBetta", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Betta</a>
+                                    <a href="@Url.Action("HdGuppy", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Guppy</a>
+                                    <a href="@Url.Action("HdKoi", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Koi</a>
+                                    <a href="@Url.Action("HdCaRong", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Rồng</a>
+                                    <a href="@Url.Action("HdThuySinh", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Thủy sinh</a>
+                                    <a href="@Url.Action("HdLocCanh", "Home")/#title" class="dropdown-item">Hướng dẫn chăm sóc cá Lóc cảnh</a>
+                                </div>
+                            </div>
+                            <a style="color: darkgreen;" href="@Url.Action("Contact", "Home")/#contact" class="nav-item nav-link">Liên hệ</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            @if (Session["Taikhoan"] != null)
+                            {
+                                @*<script>
+                                            alert("Xin chào @Session["User"]!");
+                                    </script>*@
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @Session["User"]
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Tài khoản</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a onclick="Logout()" style="color: coral;" class="dropdown-item" href="@Url.Action("Dangxuat", "Nguoidung")">Đăng xuất</a>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function Logout() {
+                                        confirm('Bạn muốn đăng xuất?') ? alert('Chào tạm biệt!') : alert('Chấp nhận ở lại?')
+                                    }
+                                </script>
+                            }
+                            else
+                            {
+                                <a style="color:limegreen; font-weight: bold;" href="@Url.Action("Dangnhap", "Nguoidung")" class="nav-item nav-link">Đăng nhập</a>
+                                <a style="color: darkorange; font-weight: bold;" href="@Url.Action("Dangky", "Nguoidung")" class="nav-item nav-link">Đăng ký</a>
+                            }
+                        </div>
+                    </div>
+                </nav>
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="~/img/r_img.jpg" alt="Image" />
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="~/img/r_img3.jpg" alt="Image" />
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="~/img/r_img2.jpg" alt="Image" />
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="~/img/ho-ca-7-mau.jpg" alt="Image" />
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="~/img/r_img4.jpg" alt="Image" />
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-success m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Chất lượng</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-success m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Miễn phí giao hàng</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-success m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Đổi trả trong 14 ngày</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-success m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0"> Hỗ trợ 24/7</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured End -->
+    <!-- Offer Start -->
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img class="img-fluid" style="width: 130px; height: 1500px;" src="~/img/phukien/phu-kien3.jpg" alt="" />
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-success mb-3">Giảm 10% cho 50 đơn hàng đầu tiên</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img class="img-fluid" style="width: 130px; height: 1500px;" src="~/img/phukien/phu-kien.jpg" alt="" />
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-success mb-3">Giảm 15% cho 50 đơn hàng đầu tiên</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Offer End -->
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <!-- Vendor Start -->
+    @Html.Action("VendorFish", "Home")
+    <!-- Vendor End -->
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <a href="" class="text-decoration-none">
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-success font-weight-bold border border-white px-3 mr-1">TNL</span>Fish</h1>
+                </a>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-success mr-3"></i>212 Lê Đức Thọ, P.15, Q. Gò Vấp, Tp.HCM</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-success mr-3"></i>143 Trung Nghĩa, Xuân Lộc, Đồng Nai</p>
+                <p class="mb-2"><i class="fa fa-envelope text-success mr-3"></i>tnlfish20422@gmail.com</p>
+                <p class="mb-2"><i class="fa fa-envelope text-success mr-3"></i>nguyenluan0101020@gmail.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-success mr-3"></i>0395373389</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-success mr-3"></i>0902515255</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="@Url.Action("Index", "Home")"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
+                            <a class="text-dark mb-2" href="@Url.Action("Index", "Buy")/#buy"><i class="fa fa-angle-right mr-2"></i>Mua hàng</a>
+                            <a class="text-dark mb-2" href="@Url.Action("Giohang", "Cart")/#cart"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
+                            <a class="text-dark" href="@Url.Action("Contact", "Home")/#contact"><i class="fa fa-angle-right mr-2"></i>Liên hệ chúng tôi</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Chính sách & quy định</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>CHÍNH SÁCH BẢO MẬT</p>
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>HƯỚNG DẪN MUA HÀNG</p>
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>CHÍNH SÁCH THANH TOÁN</p>
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>CHÍNH SÁCH BẢO HÀNH</p>
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>CHÍNH SÁCH HOÀN TIỀN</p>
+                            <p class="mb-0"><i class="fa fa-angle-right mr-2"></i>CHÍNH SÁCH VẬN CHUYỂN</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Địa chỉ</h5>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1247.665923112389!2d107.40173568106353!3d10.963965920935431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zMTQzIFRydW5nIE5naMSpYSwgWHXDom4gVHLGsOG7nW5nLCBYdcOibiBM4buZYywgxJDhu5NuZyBOYWk!5e0!3m2!1svi!2s!4v1680758258955!5m2!1svi!2s" width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-top border-light mx-xl-5 py-4">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-dark">
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">TNL Book Shop</a>
+                </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="img/payments.png" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    <div class="social-fixed" style="position: fixed; right: 1%; top: 55%; z-index: 99999; display:block;">
+        <ul style="list-style: none;">
+            <li>
+                <a href="#" title="YOUTUBE " target="_blank">
+                    <img class="img-fluid" style="width:50px; height:40px;" src="~/img/tienich/youtube.png" alt="YOUTUBE ">
+                </a>
+            </li>
+            <li>
+                <a href="#" title="INSTAGRAM" target="_blank">
+                    <img class="img-fluid" style="width:49px; height:50px;" src="~/img/tienich/instagram.png" alt="INSTAGRAM">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/profile.php?id=100030684442746&mibextid=ZbWKwL" title="FACEBOOK" target="_blank">
+                    <img class="img-fluid" style="width:49px; height:47px;" src="~/img/tienich/facebook.png" alt="FACEBOOK">
+                </a>
+            </li>
+            <li>
+                <a href="https://zalo.me/0395373389" title="Zalo" target="_blank">
+                    <img class="img-fluid" style="width:48px; height:40px;" src="~/img/tienich/zalo.png" alt="Zalo">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a style="right: 1.5%;" href="#" class="btn btn-success back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/www/lib/easing/easing.min.js"></script>
+    <script src="~/www/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/www/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/www/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/www/js/main.js"></script>
+</body>
+</html>

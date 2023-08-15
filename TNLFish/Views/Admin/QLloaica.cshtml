@@ -1,0 +1,126 @@
+﻿@using TNLFish.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<loai_ca>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Quản lý loại cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    th {
+        text-align: center;
+        color: red;
+    }
+</style>
+
+<h2>QUẢN LÝ LOẠI CÁ</h2>
+
+<p>
+    <a class="btn btn-outline-danger" href="@Url.Action("Themloaica", "Admin")">THÊM MỚI</a>
+    <a class="btn btn-outline-dark" href="@Url.Action("Export", "ExportData")">Export to Excel</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Dòng cá
+        </th>
+        <th>
+            Tên loại cá
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Màu sắc
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Nguồn gốc
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dong_ca.TenDongCa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fish_name)
+            </td>
+            <td>
+                <img style="width:140px; height:180px;" src="~/img/@Html.DisplayFor(modelItem => item.Image)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Truncate(item.Description, 70)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguonGoc)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Price) VNĐ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "SuaLoaiCa", new { id = item.id }) |
+                @Html.ActionLink("Chi tiết", "ChitietLoaica", new { id = item.id }) |
+                @Html.ActionLink("Xóa", "XoaLoaica", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+@* Tạo liên kết các trang *@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("QLloaica", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+    }
+
+        .MenuTrang li {
+            display: inline;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 5px 15px;
+            margin: 2px;
+        }
+
+            .MenuTrang li.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+</style>
