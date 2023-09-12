@@ -1,0 +1,94 @@
+﻿@model TNLFish.Models.loai_ca
+
+@{
+    ViewBag.Title = "Xóa loại cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    dt {
+        color: red;
+    }
+</style>
+
+<h2>XÁC NHẬN THÔNG TIN LOẠI CÁ CẦN XÓA</h2>
+
+<h3>Bạn quyết định xóa loại cá này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên dòng cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dong_ca.TenDongCa)
+        </dd>
+
+        <dt>
+            Tên loại cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fish_name)
+        </dd>
+
+        <dt>
+            Hình ảnh
+        </dt>
+
+        <dd>
+            <img style="width:140px; height:180px;" src="~/img/@Html.DisplayFor(modelItem => Model.Image)" />
+        </dd>
+
+        <dt>
+            Màu sắc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Nguồn gốc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguonGoc)
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.Price) VNĐ
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a class="btn btn-default" href="@Url.Action("QLloaica", "Admin")">Trở về</a>
+        </div>
+    }
+</div>

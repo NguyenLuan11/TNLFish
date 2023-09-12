@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Login - TNLFish Store</title>
+
+    <!-- Favicon -->
+    <link href="~/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/www/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/www/css/style.css" rel="stylesheet">
+
+    <style>
+        .btn-google {
+            color: white !important;
+            background-color: #ea4335;
+        }
+
+        .btn-facebook {
+            color: white !important;
+            background-color: #3b5998;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert alert-info" style="text-align:center; font-size:35px;">
+        <strong>ĐĂNG NHẬP</strong>
+    </div>
+    <div class="alert alert-success">
+        <strong>@ViewBag.Thongbao</strong>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+            <table align="center">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <tr style="height:40px;">
+                        <td>Tên đăng nhập:</td>
+                        <td>
+                            <input type="text" name="TenDN" placeholder="Nhập tên tài khoản!" autocomplete="off" />
+                            @ViewData["Loi1"]
+                        </td>
+                    </tr>
+                    <tr style="height:40px;">
+                        <td align="right">Mật khẩu:</td>
+                        <td>
+                            @Html.Password("MatKhau", new { @autocomplete = "off" })
+                            @ViewData["Loi2"]
+                        </td>
+                    </tr>
+                    <tr style="height:40px;">
+                        <td></td>
+                        <td>
+                            <input class="btn btn-info" type="submit" value="Đăng nhập" />
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-warning">Trang chủ</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <h5 align="center">Bạn chưa có tài khoản? <a style="color:red;" href="@Url.Action("Dangky", "Nguoidung")">Đăng ký</a></h5>
+            <hr class="my-4">
+
+            <div class="d-grid mb-2" align="center">
+                <form action="@Url.Action("LoginWithGooglePlus", "Nguoidung")" method="post">
+                    @Html.AntiForgeryToken()
+                    <button style="width:420px;" class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
+                        <i class="fab fa-google me-2"></i> Đăng nhập bằng Google
+                    </button>
+                </form>
+            </div>
+
+            <div id="fb-root" class="d-grid" align="center">
+                <a href="@Url.Action("LoginFb", "Nguoidung")" class="btn btn-facebook btn-login text-uppercase fw-bold" style="width:420px;">
+                    <i class="fab fa-facebook-f me-2"></i> Đăng nhập bằng Facebook
+                </a>
+            </div>
+
+        </div>
+        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+            <img style="width: 700px;" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                 class="img-fluid" alt="Sample image">
+        </div>
+    </div>
+
+</body>
+</html>

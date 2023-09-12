@@ -465,6 +465,7 @@
     <Content Include="www\css\style.min.css" />
     <Content Include="www\css\style1.min.css" />
     <Content Include="www\favicon.ico" />
+    <Content Include="www\firebase\index.js" />
     <Content Include="www\js\app-style-switcher.js" />
     <Content Include="www\js\c3.min.js" />
     <Content Include="www\js\chartist-plugin-tooltip.min.js" />

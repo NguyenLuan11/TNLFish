@@ -1,0 +1,80 @@
+﻿@using TNLFish.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<loai_ca>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Page Header Start -->
+<div class="alert alert-info" style="text-align:center; font-size:35px;">
+    <strong>Welcome to TNL Fish Shop!</strong>
+</div>
+<!-- Page Header End -->
+<!-- Products Start -->
+<div class="container-fluid pt-5">
+    <div id="new-fish" class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2" style="color:forestgreen;">Danh mục cá cảnh mới</span></h2>
+    </div>
+    <div class="row px-xl-5 pb-3">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img style="height: 200px;" class="img-fluid w-100" src="~/img/@Html.DisplayFor(modelItem => item.Image)" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">
+                            @Html.DisplayFor(modelItem => item.fish_name)
+                        </h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>@String.Format("{0:0,0}", item.Price) VNĐ</h6>
+                            <h6 class="text-muted ml-2"><del>@String.Format("{0:0,0}", item.Price) VNĐ</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="@Url.Action("Detail", "Buy", new { id = item.id })/#details" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-danger mr-1"></i>Chi tiết</a>                       
+                        @*Kiểm tra số lượng sản phẩm*@
+                        @if (item.SoLuong > 0)
+                        {
+                            <a href="@Url.Action("ThemGiohang", "Cart", new { @ID = item.id, @strURL=Request.Url.ToString() })" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-danger mr-1"></i>Thêm giỏ hàng</a>
+                        }
+                        else
+                        {
+                            <b style="color:red;">Hết hàng</b>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- Products End -->
+@* Tạo liên kết các trang *@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+    }
+
+        .MenuTrang li {
+            display: inline;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 5px 15px;
+            margin: 2px;
+        }
+
+            .MenuTrang li.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+</style>

@@ -1,0 +1,87 @@
+﻿@model TNLFish.Models.loai_ca
+
+@{
+    ViewBag.Title = "Thêm mới loại cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<h2>THÊM LOẠI CÁ MỚI</h2>
+@*Thêm thuộc tính cho form để Upload ảnh*@
+@using (Html.BeginForm("Themloaica", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+  @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="control-label col-md-2">Dòng cá</div>
+            <div class="col-md-10">
+                @Html.DropDownList("MaCa")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Tên loại cá</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fish_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fish_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Hình ảnh</div>
+            <div class="col-md-10">
+                <input class="form-control" type="file" name="fileUpload" />
+                @*Thông báo trùng*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Màu sắc</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Mô tả</div>
+            <div class="col-md-10">
+                <textarea name="Mota">Mô tả thông tin loại cá</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Nguồn gốc</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NguonGoc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguonGoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Giá bán</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Số lượng</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm mới" class="btn btn-danger" />
+                <a class="btn btn-default" href="@Url.Action("QLloaica", "Admin")">Trở về</a>
+            </div>
+        </div>
+    </div>
+}

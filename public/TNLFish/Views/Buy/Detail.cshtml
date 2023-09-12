@@ -1,0 +1,82 @@
+﻿@model TNLFish.Models.loai_ca
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Header Start -->
+<div id="details" class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">CHI TIẾT SẢN PHẨM</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="@Url.Action("Index", "Home")">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Chi tiết</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<div class="details" style="display: flex;">
+    <div>
+        <dl class="dl-horizontal">
+            <dd>
+                <img style="width: 400px;height: 450px;" src="~/img/@Html.DisplayFor(model => model.Image)" />
+            </dd>
+        </dl>
+    </div>
+    <div style="padding: 0 5%;">
+        <dl class="dl-horizontal">
+
+            <dd style="color: red; font-size: 22px;">
+                @Html.DisplayFor(model => model.fish_name)
+            </dd>
+
+            <dt>
+                Màu sắc
+            </dt>
+
+            <dd style="color: red;">
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                Nguồn gốc
+            </dt>
+
+            <dd style="color: red;">
+                @Html.DisplayFor(model => model.NguonGoc)
+            </dd>
+
+            <dt>
+                Giá bán
+            </dt>
+
+            <dd style="color: red;">
+                @String.Format("{0:0,0}", Model.Price) VNĐ
+            </dd>
+
+            <dt>
+                Mô tả
+            </dt>
+
+            <dd style="text-align:justify; text-indent: 30px;">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+        </dl>
+        <div class="card-footer d-flex justify-content-between bg-light border">
+            @*Kiểm tra số lượng sản phẩm*@
+            @if (Model.SoLuong > 0)
+            {
+                <a href="@Url.Action("ThemGiohang", "Cart", new { @ID = @Model.id, @strURL=Request.Url.ToString() })" class="btn btn-sm text-dark p-0">
+                    <i class="fas fa-shopping-cart text-danger mr-1"></i>Thêm giỏ hàng
+                </a>
+            }
+            else
+            {
+                <b style="color:red;">Hết hàng</b>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+﻿@using TNLFish.Models
+@model List<Giohang>
+
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Header Start -->
+<div id="DatHang" class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">ĐƠN ĐẶT HÀNG</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="@Url.Action("Index", "Home")">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Đơn đặt hàng</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+        <div class="alert alert-info" style="text-align:center; font-size:35px;">
+            <strong>THÔNG TIN HÀNG HÓA</strong>
+        </div>
+        <table class="table table-bordered text-center mb-0">
+            <thead class="bg-secondary text-dark">
+                <tr>
+                    <th colspan="2">Sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle"><img src="~/img/@item.sImage" alt="" style="width: 50px;"></td>
+                        <td class="align-middle">@item.sfish_name</td>
+                        <td class="align-middle">@String.Format("{0:0,0}", item.dDongia)</td>
+                        <td class="align-middle">@item.iSoluong</td>
+                        <td class="align-middle">@String.Format("{0:0,0}", item.dThanhtien)</td>
+                    </tr>
+                }
+                <tr style="font-weight:bold; text-align:right; color:red;">
+                    <td colspan="2">Số lượng cá: @ViewBag.TongSoLuong</td>
+                    <td colspan="3">Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien)</td>
+                </tr>
+                <tr style="font-weight:bold; text-align:right; color:cornflowerblue;">
+                    <td colspan="5">
+                        <a href="@Url.Action("Giohang", "Cart")" class="btn btn-sm btn-info">
+                            Trở về giỏ hàng
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    @{
+        KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+    }
+    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+        <div class="alert alert-info" style="text-align:center; font-size:35px;">
+            <strong>THÔNG TIN ĐẶT HÀNG</strong>
+        </div>
+        <table align="center" class="table table-bordered text-center mb-0">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <tr style="height:40px;">
+                    <td>Họ tên khách hàng:</td>
+                    <td style="font-weight:bold;">@kh.HoTen</td>
+                </tr>
+                <tr style="height:40px;">
+                    <td>Địa chỉ:</td>
+                    <td style="font-weight:bold;">@kh.DiachiKH</td>
+                </tr>
+                <tr style="height:40px;">
+                    <td>Điện thoại:</td>
+                    <td style="font-weight:bold;">@kh.DienthoaiKH</td>
+                </tr>
+                <tr style="height:40px;">
+                    <td>Ngày đặt:</td>
+                    <td style="font-weight:bold;">@DateTime.Now.ToShortDateString()</td>
+                </tr>
+                <tr style="height:40px;">
+                    <td>Ngày giao hàng:</td>
+                    <td>
+                        <input type="date" name="Ngaygiao" />
+                    </td>
+                </tr>
+                <tr style="height:40px;">
+                    <td></td>
+                    <td>
+                        <input class="btn btn-danger" type="submit" value="ĐỒNG Ý ĐẶT HÀNG" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

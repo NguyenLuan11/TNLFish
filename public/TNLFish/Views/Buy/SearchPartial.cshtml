@@ -1,0 +1,8 @@
+﻿@using (Html.BeginForm("SearchBuy", "Buy"))
+{
+    @Html.ValidationSummary(true)
+    <div class="input-group">
+        <input type="text" class="form-control" name="keyWord" value="@ViewBag.keyWordSearch" placeholder="Tìm kiếm . . .">
+        <button class="btn btn-outline-success"><i class="fa fa-search"></i></button>
+    </div>
+}

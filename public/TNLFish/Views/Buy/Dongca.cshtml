@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TNLFish.Models.dong_ca>
+
+<nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+        <a href="@Url.Action("Index", "Buy")/#buy" class="nav-item nav-link">
+            Tất cả
+        </a>
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("SPTheoDongca", "Buy", new {maca = item.MaCa})" class="nav-item nav-link">
+                @item.TenDongCa
+            </a>
+        }
+    </div>
+</nav>
