@@ -19,14 +19,17 @@
     <div class="form-group">
         <div class="control-label col-md-2">Tên dòng cá</div>
         <div class="col-md-10">
-            @Html.DropDownList("MaCa")
+            @Html.DropDownList("MaCa", Model.MaCa)
         </div>
     </div>
 
         <div class="form-group">
             <div class="control-label col-md-2">Tên loại cá</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fish_name, new { htmlAttributes = new { @class = "form-control" } })
+                @*
+        <input class="form-control" type="text" name="fish_name" value="@Url.Content(Model.fish_name)" />
+                *@
+                @Html.EditorFor(model => model.fish_name, new { htmlAttributes = new { @class = "form-control", @name = "fish_name" } })
                 @Html.ValidationMessageFor(model => model.fish_name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,14 +41,19 @@
                 <img src="@Url.Content("~/img/" + Model.Image)" style="width: 140px; height: 180px;" />
                 (Ảnh hiện tại)
                 @*Thông báo trùng*@
-                @ViewBag.Thongbao
+                @if(ViewBag.Thongbao != null)
+                {
+                    <script>
+                        alert("@ViewBag.Thongbao");
+                    </script>
+                }
             </div>
         </div>
 
         <div class="form-group">
             <div class="control-label col-md-2">Màu sắc</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control", @name = "Color" } })
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -53,7 +61,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">Mô tả</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @name = "Description" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,7 +69,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">Nguồn gốc</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NguonGoc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NguonGoc, new { htmlAttributes = new { @class = "form-control", @name = "NguonGoc" } })
                 @Html.ValidationMessageFor(model => model.NguonGoc, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,7 +77,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">Giá bán</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @name = "Price" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,7 +85,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">Số lượng</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @name = "SoLuong" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
         </div>

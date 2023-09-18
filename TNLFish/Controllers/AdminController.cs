@@ -6,6 +6,8 @@ using TNLFish.Models;
 using PagedList;
 using System.IO;
 using TNLFish.common;
+using System.Web.WebPages;
+using System.Web.UI.WebControls;
 
 namespace TNLFish.Controllers
 {
@@ -160,27 +162,33 @@ namespace TNLFish.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // Lưu tên file, lưu ý bổ sung thư viện System.IO
-                    var fileName = Path.GetFileName(fileUpload.FileName);
-                    // Lưu đường dẫn của file
-                    var path = Path.Combine(Server.MapPath("~/img"), fileName);
-                    // Kiểm tra hình ảnh tồn tại chưa
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.Thongbao = "Hình ảnh đã tồn tại!";
-                    }
-                    else
-                    {
-                        // Lưu hình ảnh vào đường dẫn
-                        fileUpload.SaveAs(path);
-                    }
                     int id = Int32.Parse(f.Get("id"));
                     loaica = CommonConstants.db.loai_ca.Find(id);
-                    loaica.Image = fileName;
+
+                    if (f.Get("fileUpload").IsEmpty() == false || f.Get("fileUpload") != null)
+                    {
+                        // Lưu tên file, lưu ý bổ sung thư viện System.IO
+                        var fileName = Path.GetFileName(fileUpload.FileName);
+                        // Lưu đường dẫn của file
+                        var path = Path.Combine(Server.MapPath("~/img"), fileName);
+                        // Kiểm tra hình ảnh tồn tại chưa
+                        if (System.IO.File.Exists(path))
+                        {
+                            ViewBag.Thongbao = "Hình ảnh đã tồn tại!";
+                        }
+                        else
+                        {
+                            // Lưu hình ảnh vào đường dẫn
+                            fileUpload.SaveAs(path);
+                        }
+                        loaica.Image = fileName;
+                    }
+
                     loaica.fish_name = f.Get("fish_name");
                     loaica.Color = f.Get("Color");
                     loaica.Price = Decimal.Parse(f.Get("Price"));
                     loaica.Description = f.Get("Description");
+                    loaica.NguonGoc = f.Get("NguonGoc");
                     loaica.SoLuong = Int32.Parse(f.Get("SoLuong"));
                     // Lưu vào CSDL
                     CommonConstants.db.SaveChanges();
