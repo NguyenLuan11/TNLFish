@@ -20,11 +20,15 @@ namespace TNLFish.Controllers
             return View();
         }
 
+        // QLdongca
+
         public ActionResult QLdongca()
         {
             var dongca = from dong_ca in CommonConstants.db.dong_ca select dong_ca;
             return View(dongca);
         }
+
+        // QLloaica
 
         public ActionResult QLloaica(int ?page)
         {
@@ -165,7 +169,7 @@ namespace TNLFish.Controllers
                     int id = Int32.Parse(f.Get("id"));
                     loaica = CommonConstants.db.loai_ca.Find(id);
 
-                    if (f.Get("fileUpload").IsEmpty() == false || f.Get("fileUpload") != null)
+                    if (fileUpload != null)
                     {
                         // Lưu tên file, lưu ý bổ sung thư viện System.IO
                         var fileName = Path.GetFileName(fileUpload.FileName);
@@ -197,6 +201,8 @@ namespace TNLFish.Controllers
             return RedirectToAction("QLloaica");
         }
 
+        // QLctdonhang
+
         public ActionResult QLctdonhang(int ?page)
         {
             int pageNumber = (page ?? 1);
@@ -204,6 +210,8 @@ namespace TNLFish.Controllers
             var ctdh = CommonConstants.db.CHITIETDONTHANGs.ToList();
             return View(ctdh.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
         }
+
+        // QLdondathang
 
         public ActionResult QLdondathang(int? page)
         {
