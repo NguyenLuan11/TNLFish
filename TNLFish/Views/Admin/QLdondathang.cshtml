@@ -25,7 +25,7 @@
             Mã đơn hàng
         </th>
         <th>
-            Đã thanh toán
+            Thanh toán
         </th>
         <th>
             Tình trạng giao hàng
@@ -49,10 +49,24 @@
                 @Html.DisplayFor(modelItem => item.MaDonHang)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Dathanhtoan)
+                @if (item.Dathanhtoan == true)
+                {
+                    <p style="color: forestgreen; font-weight: bold;">Đã thanh toán</p>
+                }
+                else if (item.Dathanhtoan == false)
+                {
+                    <p style="color: orangered; font-weight: bold;">Chưa thanh toán</p>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tinhtranggiaohang)
+                @if (item.Tinhtranggiaohang == true)
+                {
+                    <p style="color: forestgreen; font-weight: bold;">Đã giao</p>
+                }
+                else if (item.Dathanhtoan == false)
+                {
+                    <p style="color: orangered; font-weight: bold; ">Chưa giao</p>
+                }
             </td>
             <td>
                 @String.Format("{0:dd/MM/yyyy}", item.Ngaydat)

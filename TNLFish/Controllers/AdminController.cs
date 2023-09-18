@@ -49,7 +49,7 @@ namespace TNLFish.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Themloaica(loai_ca loaica, HttpPostedFileBase fileUpload)
+        public ActionResult Themloaica(loai_ca loaica, HttpPostedFileBase fileUpload, FormCollection f)
         {
             // Đưa dữ liệu vào DropdownList
             ViewBag.MaCa = new SelectList(CommonConstants.db.dong_ca.ToList().OrderBy(n => n.TenDongCa), "MaCa", "TenDongCa");
@@ -189,6 +189,7 @@ namespace TNLFish.Controllers
                     }
 
                     loaica.fish_name = f.Get("fish_name");
+                    loaica.MaCa = f.Get("MaCa");
                     loaica.Color = f.Get("Color");
                     loaica.Price = Decimal.Parse(f.Get("Price"));
                     loaica.Description = f.Get("Description");

@@ -4,13 +4,13 @@
 
 @helper Truncate(string input, int length)
 {
-    if (input.Length < length)
+    if (input.Length <= length)
     {
-        @input
+        @Html.Raw(input)
     }
     else
     {
-        @input.Substring(0, length)<text>...</text>
+        @Html.Raw(input.Substring(0, length))<text>...</text>
     }
 }
 

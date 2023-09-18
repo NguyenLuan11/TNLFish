@@ -19,16 +19,13 @@
     <div class="form-group">
         <div class="control-label col-md-2">Tên dòng cá</div>
         <div class="col-md-10">
-            @Html.DropDownList("MaCa", Model.MaCa)
+            @Html.DropDownListFor(model => model.MaCa, (SelectList)ViewBag.Maca, new { htmlAttributes = new { @class = "form-control", @name = "MaCa" } })
         </div>
     </div>
 
         <div class="form-group">
             <div class="control-label col-md-2">Tên loại cá</div>
             <div class="col-md-10">
-                @*
-        <input class="form-control" type="text" name="fish_name" value="@Url.Content(Model.fish_name)" />
-                *@
                 @Html.EditorFor(model => model.fish_name, new { htmlAttributes = new { @class = "form-control", @name = "fish_name" } })
                 @Html.ValidationMessageFor(model => model.fish_name, "", new { @class = "text-danger" })
             </div>
@@ -61,7 +58,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">Mô tả</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @name = "Description" } })
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @name = "Description" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
