@@ -20,7 +20,7 @@ namespace TNLFish.Controllers
             return View();
         }
 
-        // QLdongca
+        // --------------------------- QUAN LY DONG CA --------------------------- //
 
         public ActionResult QLdongca()
         {
@@ -28,7 +28,7 @@ namespace TNLFish.Controllers
             return View(dongca);
         }
 
-        // QLloaica
+        // --------------------------- QUAN LY LOAI CA --------------------------- //
 
         public ActionResult QLloaica(int ?page)
         {
@@ -201,7 +201,7 @@ namespace TNLFish.Controllers
             return RedirectToAction("QLloaica");
         }
 
-        // QLctdonhang
+        // --------------------------- QUAN LY CHI TIET DON HANG --------------------------- //
 
         public ActionResult QLctdonhang(int ?page)
         {
@@ -211,7 +211,7 @@ namespace TNLFish.Controllers
             return View(ctdh.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
         }
 
-        // QLdondathang
+        // --------------------------- QUAN LY DON DAT HANG --------------------------- //
 
         public ActionResult QLdondathang(int? page)
         {
