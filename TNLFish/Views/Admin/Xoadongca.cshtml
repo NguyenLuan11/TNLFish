@@ -1,0 +1,46 @@
+﻿@model TNLFish.Models.dong_ca
+
+@{
+    ViewBag.Title = "Xóa dòng cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    dt {
+        color: red;
+    }
+</style>
+
+<h2>XÁC NHẬN THÔNG TIN DÒNG CÁ CẦN XÓA</h2>
+
+<h3>Bạn quyết định xóa dòng cá này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCa)
+        </dd>
+
+        <dt>
+            Tên dòng cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDongCa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Xóa" class="btn btn-danger" />
+    <a class="btn btn-default" href="@Url.Action("QLdongca", "Admin")">Trở về</a>
+</div>
+    }
+</div>

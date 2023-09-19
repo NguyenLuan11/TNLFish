@@ -20,7 +20,7 @@ namespace TNLFish.Controllers
             return View();
         }
 
-        // --------------------------- QUAN LY DONG CA --------------------------- //
+        // --------------------------- QUẢN LÝ DÒNG CÁ --------------------------- //
 
         public ActionResult QLdongca()
         {
@@ -28,7 +28,128 @@ namespace TNLFish.Controllers
             return View(dongca);
         }
 
-        // --------------------------- QUAN LY LOAI CA --------------------------- //
+        // Thêm dongca
+        [HttpGet]
+        public ActionResult Themdongca()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Themdongca(dong_ca dongca, FormCollection f)
+        {
+            if (ModelState.IsValid)
+            {
+                var maca = f.Get("MaCa");
+                var tendongca = f.Get("TenDongCa");
+                if (String.IsNullOrEmpty(maca))
+                {
+                    ViewData["Loi1"] = "Phải nhập Mã cá!";
+                }
+                else if (String.IsNullOrEmpty(tendongca))
+                {
+                    ViewData["Loi2"] = "Phải nhập tên dòng cá!";
+                }
+                else
+                {
+                    dongca.MaCa = maca;
+                    dongca.TenDongCa = tendongca;
+
+                    // Lưu vào CSDL
+                    CommonConstants.db.dong_ca.Add(dongca);
+                    CommonConstants.db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("QLdongca");
+        }
+
+        // Chỉnh sửa dongca
+        [HttpGet]
+        public ActionResult Suadongca(string maca)
+        {
+            // Lấy ra đối tượng dongca cần sửa theo mã
+            dong_ca dongca = CommonConstants.db.dong_ca.SingleOrDefault(n => n.MaCa == maca);
+            ViewBag.maca = dongca.MaCa;
+            if (dongca == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(dongca);
+        }
+
+        [HttpPost]
+        public ActionResult Suadongca(FormCollection f)
+        {
+            if(ModelState.IsValid)
+            {
+                // Lấy ra đối tượng dongca cần sửa theo mã
+                string maca = f.Get("MaCa");
+                dong_ca dongca = CommonConstants.db.dong_ca.SingleOrDefault(n => n.MaCa == maca);
+                // Set giá trị mới
+                var tendongca = f.Get("TenDongCa");
+                if (String.IsNullOrEmpty(tendongca))
+                {
+                    ViewData["Loi1"] = "Phải nhập tên dòng cá!";
+                }
+                else
+                {
+                    dongca.TenDongCa = tendongca;
+                    // Lưu vào CSDL
+                    CommonConstants.db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("QLdongca");
+        }
+
+        // Hiển thị chi tiết dongca
+        public ActionResult Chitietdongca(string maca)
+        {
+            // Lấy ra đối tượng dongca theo mã
+            dong_ca dongca = CommonConstants.db.dong_ca.SingleOrDefault(n => n.MaCa == maca);
+            ViewBag.maca = dongca.MaCa;
+            if (dongca == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(dongca);
+        }
+
+        // Xóa dongca
+        [HttpGet]
+        public ActionResult Xoadongca(string maca)
+        {
+            // Lấy ra đối tượng dongca cần xóa theo mã
+            dong_ca dongca = CommonConstants.db.dong_ca.SingleOrDefault(n => n.MaCa == maca);
+            ViewBag.maca = dongca.MaCa;
+            if (dongca == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(dongca);
+        }
+
+        [HttpPost, ActionName("Xoadongca")]
+        public ActionResult Xacnhanxoa(string maca)
+        {
+            // Lấy ra đối tượng dongca cần xóa theo mã
+            dong_ca dongca = CommonConstants.db.dong_ca.SingleOrDefault(n => n.MaCa == maca);
+            ViewBag.maca = dongca.MaCa;
+            if (dongca == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            CommonConstants.db.dong_ca.Remove(dongca);
+            CommonConstants.db.SaveChanges();
+            return RedirectToAction("QLdongca");
+        }
+
+        // --------------------------- QUẢN LÝ LOẠI CÁ --------------------------- //
 
         public ActionResult QLloaica(int ?page)
         {
@@ -38,6 +159,7 @@ namespace TNLFish.Controllers
             return View(loaica.OrderBy(n => n.id).ToPagedList(pageNumber, pageSize));
         }
 
+        // Thêm loaica
         [HttpGet]
         public ActionResult Themloaica()
         {
@@ -87,10 +209,10 @@ namespace TNLFish.Controllers
             return RedirectToAction("Qlloaica");
         }
 
-        // Hiển thị sản phẩm
+        // Hiển thị chi tiết loaica
         public ActionResult ChitietLoaica(int id)
         {
-            // Lấy ra đối tượng sách theo mã
+            // Lấy ra đối tượng loaica theo mã
             loai_ca loaica = CommonConstants.db.loai_ca.SingleOrDefault(n => n.id == id);
             ViewBag.id = loaica.id;
             if(loaica == null)
@@ -101,11 +223,11 @@ namespace TNLFish.Controllers
             return View(loaica);
         }
 
-        // Xóa sản phẩm
+        // Xóa loaica
         [HttpGet]
         public ActionResult XoaLoaica(int id)
         {
-            // Lấy ra đối tượng sách cần xóa theo mã
+            // Lấy ra đối tượng loaica cần xóa theo mã
             loai_ca loaica = CommonConstants.db.loai_ca.SingleOrDefault(n => n.id == id);
             ViewBag.id = loaica.id;
             if (loaica == null)
@@ -119,7 +241,7 @@ namespace TNLFish.Controllers
         [HttpPost, ActionName("XoaLoaica")]
         public ActionResult Xacnhanxoa(int id)
         {
-            // Lấy ra đối tượng sách cần xóa theo mã
+            // Lấy ra đối tượng loaica cần xóa theo mã
             loai_ca loaica = CommonConstants.db.loai_ca.SingleOrDefault(n => n.id == id);
             ViewBag.id = loaica.id;
             if (loaica == null)
@@ -132,11 +254,11 @@ namespace TNLFish.Controllers
             return RedirectToAction("QLloaica");
         }
 
-        // Chỉnh sửa sản phẩm
+        // Chỉnh sửa loaica
         [HttpGet]
         public ActionResult SuaLoaiCa(int id)
         {
-            // Lấy ra đối tượng sách cần xóa theo mã
+            // Lấy ra đối tượng loaica cần sửa theo mã
             loai_ca loaica = CommonConstants.db.loai_ca.SingleOrDefault(n => n.id == id);
             ViewBag.id = loaica.id;
             if (loaica == null)
@@ -202,7 +324,7 @@ namespace TNLFish.Controllers
             return RedirectToAction("QLloaica");
         }
 
-        // --------------------------- QUAN LY CHI TIET DON HANG --------------------------- //
+        // --------------------------- QUẢN LÝ CHI TIẾT ĐƠN HÀNG --------------------------- //
 
         public ActionResult QLctdonhang(int ?page)
         {
@@ -212,7 +334,7 @@ namespace TNLFish.Controllers
             return View(ctdh.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
         }
 
-        // --------------------------- QUAN LY DON DAT HANG --------------------------- //
+        // --------------------------- QUẢN LÝ ĐƠN ĐẶT HÀNG --------------------------- //
 
         public ActionResult QLdondathang(int? page)
         {

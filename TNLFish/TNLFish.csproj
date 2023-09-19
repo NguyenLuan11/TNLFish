@@ -615,6 +615,10 @@
     <Content Include="Views\Admin\QLdondathang.cshtml" />
     <Content Include="Views\LoginAdmin\Login.cshtml" />
     <Content Include="Views\ExportData\ReadFromExcel.cshtml" />
+    <Content Include="Views\Admin\Themdongca.cshtml" />
+    <Content Include="Views\Admin\Suadongca.cshtml" />
+    <Content Include="Views\Admin\Xoadongca.cshtml" />
+    <Content Include="Views\Admin\Chitietdongca.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

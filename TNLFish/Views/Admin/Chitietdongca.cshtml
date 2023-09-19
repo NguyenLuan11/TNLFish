@@ -1,0 +1,40 @@
+﻿@model TNLFish.Models.dong_ca
+
+@{
+    ViewBag.Title = "Chi tiết dòng cá";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    dt {
+        color: red;
+    }
+</style>
+
+<h2>CHI TIẾT DÒNG CÁ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCa)
+        </dd>
+
+        <dt>
+            Tên dòng cá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDongCa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-danger" href="@Url.Action("Suadongca", "Admin", new { maca = Model.MaCa })">Sửa</a>
+    <a class="btn btn-default" href="@Url.Action("QLdongca", "Admin")">Trở về</a>
+</p>

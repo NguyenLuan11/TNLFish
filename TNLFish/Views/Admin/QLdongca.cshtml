@@ -37,9 +37,9 @@
             @Html.DisplayFor(modelItem => item.TenDongCa)
         </td>
         <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.MaCa }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaCa }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.MaCa })
+            @Html.ActionLink("Sửa", "Suadongca", new { maca = item.MaCa }) |
+            @Html.ActionLink("Chi tiết", "Chitietdongca", new { maca = item.MaCa }) |
+            @Html.ActionLink("Xóa", "Xoadongca", new { maca = item.MaCa })
         </td>
     </tr>
 }
