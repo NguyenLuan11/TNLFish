@@ -37,7 +37,7 @@ namespace TNLFish.Controllers
                         Id = dataLoaiCa.id,
                         DongCa = dataLoaiCa.dong_ca.TenDongCa,
                         FishName = dataLoaiCa.fish_name,
-                        UrlImage = dataLoaiCa.Image,
+                        UrlImage = Path.GetFullPath(dataLoaiCa.Image),
                         Color = dataLoaiCa.Color,
                         Description = dataLoaiCa.Description,
                         NguonGoc = dataLoaiCa.NguonGoc,
