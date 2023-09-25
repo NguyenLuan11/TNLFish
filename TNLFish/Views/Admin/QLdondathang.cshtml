@@ -49,24 +49,10 @@
                 @Html.DisplayFor(modelItem => item.MaDonHang)
             </td>
             <td>
-                @if (item.Dathanhtoan == true)
-                {
-                    <p style="color: forestgreen; font-weight: bold;">Đã thanh toán</p>
-                }
-                else
-                {
-                    <p style="color: orangered; font-weight: bold;">Chưa thanh toán</p>
-                }
+                @Html.Raw((bool)item.Dathanhtoan ?  "<p style = \"color: forestgreen; font-weight: bold;\">Đã thanh toán</p>" :  "<p style = \"color: orangered; font-weight: bold;\">Chưa thanh toán</p>")
             </td>
             <td>
-                @if (item.Tinhtranggiaohang == true)
-                {
-                    <p style="color: forestgreen; font-weight: bold;">Đã giao</p>
-                }
-                else
-                {
-                    <p style="color: orangered; font-weight: bold; ">Chưa giao</p>
-                }
+                @Html.Raw((bool)item.Tinhtranggiaohang ? "<p style = \"color: forestgreen; font-weight: bold;\">Đã giao</p>" : "<p style = \"color: orangered; font-weight: bold;\">Chưa giao</p>")
             </td>
             <td>
                 @String.Format("{0:dd/MM/yyyy}", item.Ngaydat)
