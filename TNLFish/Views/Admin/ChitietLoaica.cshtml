@@ -6,83 +6,61 @@
 }
 
 <style>
-    dd {
+    b {
         color: red;
+    }
+
+    b, p {
+        font-size: 17px;
+    }
+
+    img.imageItem {
+        width: 200px;
+        height: 200px;
+        border: 1px solid forestgreen;
+    }
+
+    div.container_ctlc {
+        border: 1px solid darkblue;
+        border-radius: 21px;
+        display: flex;
+        margin: 20px;
+        justify-content: center;
     }
 </style>
 
 <h2 style="text-align: center; margin-top: 10px;">CHI TIẾT LOẠI CÁ</h2>
 
+<div class="container_ctlc">
     <hr />
-    <div class="details" style="display: flex;">
-        <div>
-            <dl class="dl-horizontal">
-                <dd>
-                    <img style="width: 400px; height: 450px; " src="~/img/@Html.DisplayFor(modelItem => Model.Image)" />
-                </dd>
-            </dl>
-        </div>
-        <div style="padding: 0 5%;">
-            <dl class="dl-horizontal">
-                <dt>
-                    Tên dòng cá
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.dong_ca.TenDongCa)
-                </dd>
-
-                <dt>
-                    Tên loại cá
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.fish_name)
-                </dd>
-
-                <dt>
-                    Màu sắc
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Color)
-                </dd>
-
-                <dt>
-                    Mô tả
-                </dt>
-
-                <dd>
-                    @Html.Raw(Model.Description)
-                </dd>
-
-                <dt>
-                    Nguồn gốc
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.NguonGoc)
-                </dd>
-
-                <dt>
-                    Giá bán
-                </dt>
-
-                <dd>
-                    @String.Format("{0:0,0}", Model.Price) VNĐ
-                </dd>
-
-                <dt>
-                    Số lượng 
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.SoLuong)
-                </dd>
-            </dl>
-        </div>
+    <div style="padding: 20px;">
+        <p>
+            <b>Tên dòng cá:</b> @Html.DisplayFor(model => model.dong_ca.TenDongCa)
+        </p>
+        <p>
+            <b>Tên loại cá:</b> @Html.DisplayFor(model => model.fish_name)
+        </p>
+        <img class="imageItem" src="~/img/@Html.DisplayFor(modelItem => Model.Image)" />
     </div>
-<p>
-    <a class="btn btn-danger" href="@Url.Action("SuaLoaiCa", "Admin", new { id = Model.id })">Sửa</a>
-    <a class="btn btn-default" href="@Url.Action("QLloaica", "Admin")">Trở về</a>
-</p>
+    <div style="padding: 20px;">
+        <p>
+            <b>Màu sắc:</b> @Html.DisplayFor(model => model.Color)
+        </p>
+        <p>
+            <b>Mô tả:</b> @Html.Raw(Model.Description)
+        </p>
+        <p>
+            <b>Nguồn gốc:</b> @Html.DisplayFor(model => model.NguonGoc)
+        </p>
+        <p>
+            <b>Giá bán:</b> @String.Format("{0:0,0}", Model.Price) VNĐ
+        </p>
+        <p>
+            <b>Số lượng:</b> @Html.DisplayFor(model => model.SoLuong)
+        </p>
+        <p>
+            <a class="btn btn-danger" href="@Url.Action("SuaLoaiCa", "Admin", new { id = Model.id })">Sửa</a>
+            <a class="btn btn-default" href="@Url.Action("QLloaica", "Admin")">Trở về</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model TNLFish.Models.CHITIETDONTHANG
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<style>
+    b {
+        color: red;
+    }
+
+    b, p {
+        font-size: 17px;
+    }
+
+    img.imageItem {
+        width: 200px;
+        height: 200px;
+        border: 1px solid forestgreen;
+    }
+
+    div.container_ctdh {
+        border: 1px solid darkblue;
+        border-radius: 21px;
+        display: flex;
+        margin: 20px;
+        justify-content: center;
+    }
+</style>
+
+<h2 style="text-align: center; margin-top: 10px;" >CHI TIẾT ĐƠN HÀNG</h2>
+
+<div class="container_ctdh">
+    <hr />
+    <div style="padding: 20px;">
+        <p>
+            <b>Loại cá:</b> @Html.DisplayFor(model => model.loai_ca.fish_name)
+        </p>
+        <img class="imageItem" src="~/img/@Html.DisplayFor(model => model.loai_ca.Image)" />
+    </div>
+    <div style="padding: 20px;">
+        <p>
+            <b>Mã đơn hàng:</b> @Html.DisplayFor(model => model.DONDATHANG.MaDonHang)
+        </p>
+        <p>
+            <b>Khách hàng:</b> @Html.DisplayFor(model => model.DONDATHANG.KHACHHANG.Taikhoan)
+        </p>
+        <p>
+            <b>Ngày đặt:</b> @String.Format("{0:dd/MM/yyyy}", Model.DONDATHANG.Ngaydat)
+        </p>
+        <p>
+            <b>Số lượng:</b> @Html.DisplayFor(model => model.Soluong)
+        </p>
+        <p>
+            <b>Đơn giá:</b> @String.Format("{0:0,0}", Model.Dongia) VNĐ
+        </p>
+        <p>
+            <a class="btn btn-default" href="@Url.Action("QLctdonhang", "Admin")">Trở về</a>
+        </p>
+    </div>
+</div>

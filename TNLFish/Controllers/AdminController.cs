@@ -334,6 +334,18 @@ namespace TNLFish.Controllers
             return View(ctdh.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
         }
 
+        // Hiển thị chi tiết CHITIETDONHANG
+        public ActionResult Chitietdh(int madh, int id)
+        {
+            CHITIETDONTHANG ctdh = CommonConstants.db.CHITIETDONTHANGs.SingleOrDefault(n => n.MaDonHang == madh && n.id == id);
+            if(ctdh == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(ctdh);
+        }
+
         // --------------------------- QUẢN LÝ ĐƠN ĐẶT HÀNG --------------------------- //
 
         public ActionResult QLdondathang(int? page)

@@ -6,35 +6,37 @@
 }
 
 <style>
-    dt {
+    b {
         color: red;
+    }
+
+    b, p {
+        font-size: 17px;
+    }
+
+    div.container_ctdc {
+        border: 1px solid darkblue;
+        border-radius: 21px;
+        display: flex;
+        margin: 20px;
+        justify-content: center;
     }
 </style>
 
-<h2>CHI TIẾT DÒNG CÁ</h2>
+<h2 style="text-align: center; margin-top: 10px;" >CHI TIẾT DÒNG CÁ</h2>
 
-<div>
+<div class="container_ctdc">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Mã cá
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaCa)
-        </dd>
-
-        <dt>
-            Tên dòng cá
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenDongCa)
-        </dd>
-
-    </dl>
+    <div style="padding: 20px;">
+        <p>
+            <b>Mã cá:</b> @Html.DisplayFor(model => model.MaCa)
+        </p>
+        <p>
+            <b>Tên dòng cá:</b> @Html.DisplayFor(model => model.TenDongCa)
+        </p>
+        <p>
+            <a class="btn btn-danger" href="@Url.Action("Suadongca", "Admin", new { maca = Model.MaCa })">Sửa</a>
+            <a class="btn btn-default" href="@Url.Action("QLdongca", "Admin")">Trở về</a>
+        </p>
+    </div>
 </div>
-<p>
-    <a class="btn btn-danger" href="@Url.Action("Suadongca", "Admin", new { maca = Model.MaCa })">Sửa</a>
-    <a class="btn btn-default" href="@Url.Action("QLdongca", "Admin")">Trở về</a>
-</p>

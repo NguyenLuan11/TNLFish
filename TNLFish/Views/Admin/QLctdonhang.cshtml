@@ -14,15 +14,15 @@
     }
 </style>
 
-<h2>QUẢN LÝ CHI TIẾT ĐƠN HÀNG</h2>
+<h2 style="text-align: center; margin-top: 10px;" >QUẢN LÝ CHI TIẾT ĐƠN HÀNG</h2>
 
-<p>
-    <a class="btn btn-outline-danger" href="@Url.Action("Themctdh", "Admin")">THÊM MỚI</a>
-</p>
 <table class="table">
     <tr>
         <th>
             Mã đơn hàng
+        </th>
+        <th>
+            Ngày đặt
         </th>
         <th>
             Loại cá
@@ -43,6 +43,9 @@
                 @Html.DisplayFor(modelItem => item.DONDATHANG.MaDonHang)
             </td>
             <td>
+                @String.Format("{0:dd/MM/yyyy}", item.DONDATHANG.Ngaydat)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.loai_ca.fish_name)
             </td>
             <td>
@@ -52,9 +55,7 @@
                 @String.Format("{0:0,0}", item.Dongia) VNĐ
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Suactdh", new { id = item.DONDATHANG.MaDonHang }) |
-                @Html.ActionLink("Chi tiết", "Chitietdh", new { id = item.DONDATHANG.MaDonHang }) |
-                @Html.ActionLink("Xóa", "Xoactdh", new { id = item.DONDATHANG.MaDonHang })
+                @Html.ActionLink("Chi tiết", "Chitietdh", new { madh = item.MaDonHang, id = item.id })
             </td>
         </tr>
     }
