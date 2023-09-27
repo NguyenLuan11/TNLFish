@@ -1,0 +1,91 @@
+﻿@model TNLFish.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Sửa đơn đặt hàng";
+    Layout = "~/Views/Shared/_Layout Admin.cshtml";
+}
+
+<h2>CHỈNH SỬA THÔNG TIN ĐƠN ĐẶT HÀNG</h2>
+
+@using (Html.BeginForm("Suaddh", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    <div class="control-label col-md-2">Mã đơn hàng</div>
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.MaDonHang, new { htmlAttributes = new { @class = "form-control", @name = "MaDonHang", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.MaDonHang, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Khách hàng: @Model.KHACHHANG.Taikhoan</div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Ngày đặt: @String.Format("{0:dd/MM/yyyy}", Model.Ngaydat)</div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Thanh toán</div>
+        <div class="col-md-10">
+            <select name="select-thanhtoan" class="form-select" aria-label="Default select example">
+                @if ((bool)Model.Dathanhtoan)
+                {
+                    <option value="True" selected>Đã thanh toán</option>
+                    <option value="False">Chưa thanh toán</option>
+                }
+                else
+                {
+                    <option value="False" selected>Chưa thanh toán</option>
+                    <option value="True">Đã thanh toán</option>
+                }
+            </select>
+            @*@Html.EditorFor(model => model.Dathanhtoan, new { htmlAttributes = new { @class = "form-control", @name = "tinhtrangThanhToan" } })*@
+            @Html.ValidationMessageFor(model => model.Dathanhtoan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">Tình trạng giao hàng</div>
+        <div class="col-md-10">
+            <select name="select-giaohang" class="form-select" aria-label="Default select example">
+                @if ((bool)Model.Tinhtranggiaohang)
+                {
+                    <option value="True" selected>Đã giao</option>
+                    <option value="False">Chưa giao</option>
+                }
+                else
+                {
+                    <option value="False" selected>Chưa giao</option>
+                    <option value="True">Đã giao</option>
+                }
+            </select>
+            @*@Html.EditorFor(model => model.Tinhtranggiaohang, new { htmlAttributes = new { @class = "form-control", @name = "tinhtrangGiaoHang" } })*@
+            @Html.ValidationMessageFor(model => model.Tinhtranggiaohang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Ngày giao:
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaygiao)
+        </div>
+        <div class="col-md-10">
+            <input class="form-control" type="date" name="NgayGiao" />
+            @Html.ValidationMessageFor(model => model.Ngaygiao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-warning" />
+            <a class="btn btn-default" href="@Url.Action("QLdondathang", "Admin")">Trở về</a>
+        </div>
+    </div>
+</div>
+}

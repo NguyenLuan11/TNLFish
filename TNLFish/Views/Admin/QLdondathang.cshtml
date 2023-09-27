@@ -16,9 +16,6 @@
 
 <h2>QUẢN LÝ ĐƠN ĐẶT HÀNG</h2>
 
-<p>
-    <a class="btn btn-outline-danger" href="@Url.Action("Themddh", "Admin")">THÊM MỚI</a>
-</p>
 <table class="table">
     <tr>
         <th>
@@ -49,10 +46,34 @@
                 @Html.DisplayFor(modelItem => item.MaDonHang)
             </td>
             <td>
-                @Html.Raw((bool)item.Dathanhtoan ?  "<p style = \"color: forestgreen; font-weight: bold;\">Đã thanh toán</p>" :  "<p style = \"color: orangered; font-weight: bold;\">Chưa thanh toán</p>")
+                @if ((bool)item.Dathanhtoan)
+                {
+                    <p style="color: forestgreen; font-weight: bold;">Đã thanh toán</p>
+                }
+                else
+                {
+                    <p style="color: orangered; font-weight: bold;">
+                        Chưa thanh toán
+                        <a class="btn btn-outline-primary" href="@Url.Action("xacnhanThanhToan", "Admin", new { id = item.MaDonHang })">
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </a>
+                    </p>
+                }
             </td>
             <td>
-                @Html.Raw((bool)item.Tinhtranggiaohang ? "<p style = \"color: forestgreen; font-weight: bold;\">Đã giao</p>" : "<p style = \"color: orangered; font-weight: bold;\">Chưa giao</p>")
+                @if ((bool)item.Tinhtranggiaohang)
+                {
+                    <p style="color: forestgreen; font-weight: bold;">Đã giao</p>
+                }
+                else
+                {
+                    <p style="color: orangered; font-weight: bold;">
+                        Chưa giao
+                        <a class="btn btn-outline-primary" href="@Url.Action("xacnhanGiaoHang", "Admin", new { id = item.MaDonHang })">
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </a>
+                    </p>
+                }
             </td>
             <td>
                 @String.Format("{0:dd/MM/yyyy}", item.Ngaydat)
@@ -63,11 +84,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KHACHHANG.Taikhoan)
             </td>
-            <td>
-                @Html.ActionLink("Sửa", "Suaddh", new { id=item.MaDonHang }) |
-                @Html.ActionLink("Chi tiết", "Chitietddh", new { id = item.MaDonHang }) |
-                @Html.ActionLink("Xóa", "Xoaddh", new { id = item.MaDonHang })
-            </td>
+            @*<td>
+                @Html.ActionLink("Sửa", "Suaddh", new { id=item.MaDonHang })
+            </td>*@
         </tr>
     }
 

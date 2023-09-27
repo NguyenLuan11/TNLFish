@@ -291,7 +291,7 @@ namespace TNLFish.Controllers
                     int id = Int32.Parse(f.Get("id"));
                     loaica = CommonConstants.db.loai_ca.Find(id);
 
-                    if (fileUpload != null)
+                    if (fileUpload != null || !String.IsNullOrEmpty(f.Get("fileUpload")))
                     {
                         // Lưu tên file, lưu ý bổ sung thư viện System.IO
                         var fileName = Path.GetFileName(fileUpload.FileName);
@@ -342,6 +342,64 @@ namespace TNLFish.Controllers
             int pageSize = 10;
             var ddh = CommonConstants.db.DONDATHANGs.ToList();
             return View(ddh.OrderBy(n => n.MaDonHang).ToPagedList(pageNumber, pageSize));
+        }
+
+        // Chỉnh sửa DONDATHANG
+        /*[HttpGet]
+        public ActionResult Suaddh(int id)
+        {
+            DONDATHANG ddh = CommonConstants.db.DONDATHANGs.SingleOrDefault(n => n.MaDonHang == id);
+            ViewBag.MaDonHang = ddh.MaDonHang;
+            if (ddh == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(ddh);
+        }
+
+        [HttpPost]
+        public ActionResult Suaddh(FormCollection f)
+        {
+            if(ModelState.IsValid)
+            {
+                int id = Int32.Parse(f.Get("MaDonHang"));
+                DONDATHANG ddh = CommonConstants.db.DONDATHANGs.Find(id);
+                // Set giá trị mới
+                if (!String.IsNullOrEmpty(f.Get("select-thanhtoan")))
+                {
+                    ddh.Dathanhtoan = Boolean.Parse(f.Get("select-thanhtoan"));
+                }
+                if (!String.IsNullOrEmpty(f.Get("select-giaohang")))
+                {
+                    ddh.Tinhtranggiaohang = Boolean.Parse(f.Get("select-giaohang"));
+                }
+                if (!String.IsNullOrEmpty(f.Get("NgayGiao")))
+                {
+                    ddh.Ngaygiao = DateTime.Parse(f.Get("NgayGiao"));
+                }
+
+                CommonConstants.db.SaveChanges();
+            }
+            return RedirectToAction("QLdondathang");
+        }*/
+
+        // Xác nhận thanh toán
+        public ActionResult xacnhanThanhToan(int id)
+        {
+            DONDATHANG ddh = CommonConstants.db.DONDATHANGs.Find(id);
+            ddh.Dathanhtoan = true;
+            CommonConstants.db.SaveChanges();
+            return RedirectToAction("QLdondathang");
+        }
+
+        // Xác nhận giao hàng
+        public ActionResult xacnhanGiaoHang(int id)
+        {
+            DONDATHANG ddh = CommonConstants.db.DONDATHANGs.Find(id);
+            ddh.Tinhtranggiaohang = true;
+            CommonConstants.db.SaveChanges();
+            return RedirectToAction("QLdondathang");
         }
     }
 }

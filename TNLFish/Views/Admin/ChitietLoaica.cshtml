@@ -6,82 +6,82 @@
 }
 
 <style>
-    dt {
+    dd {
         color: red;
     }
 </style>
 
-<h2>CHI TIẾT LOẠI CÁ</h2>
+<h2 style="text-align: center; margin-top: 10px;">CHI TIẾT LOẠI CÁ</h2>
 
-<div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Tên dòng cá
-        </dt>
+    <div class="details" style="display: flex;">
+        <div>
+            <dl class="dl-horizontal">
+                <dd>
+                    <img style="width: 400px; height: 450px; " src="~/img/@Html.DisplayFor(modelItem => Model.Image)" />
+                </dd>
+            </dl>
+        </div>
+        <div style="padding: 0 5%;">
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên dòng cá
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dong_ca.TenDongCa)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dong_ca.TenDongCa)
+                </dd>
 
-        <dt>
-            Tên loại cá
-        </dt>
+                <dt>
+                    Tên loại cá
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fish_name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.fish_name)
+                </dd>
 
-        <dt>
-            Hình ảnh
-        </dt>
+                <dt>
+                    Màu sắc
+                </dt>
 
-        <dd>
-            <img style="width:140px; height:180px;" src="~/img/@Html.DisplayFor(modelItem => Model.Image)" />
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Color)
+                </dd>
 
-        <dt>
-            Màu sắc
-        </dt>
+                <dt>
+                    Mô tả
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
+                <dd>
+                    @Html.Raw(Model.Description)
+                </dd>
 
-        <dt>
-            Mô tả
-        </dt>
+                <dt>
+                    Nguồn gốc
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.NguonGoc)
+                </dd>
 
-        <dt>
-            Nguồn gốc
-        </dt>
+                <dt>
+                    Giá bán
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NguonGoc)
-        </dd>
+                <dd>
+                    @String.Format("{0:0,0}", Model.Price) VNĐ
+                </dd>
 
-        <dt>
-            Giá bán
-        </dt>
+                <dt>
+                    Số lượng 
+                </dt>
 
-        <dd>
-            @String.Format("{0:0,0}", Model.Price) VNĐ
-        </dd>
-
-        <dt>
-            Số lượng
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
-
-    </dl>
-</div>
+                <dd>
+                    @Html.DisplayFor(model => model.SoLuong)
+                </dd>
+            </dl>
+        </div>
+    </div>
 <p>
     <a class="btn btn-danger" href="@Url.Action("SuaLoaiCa", "Admin", new { id = Model.id })">Sửa</a>
     <a class="btn btn-default" href="@Url.Action("QLloaica", "Admin")">Trở về</a>

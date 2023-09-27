@@ -98,9 +98,9 @@
 
                             @if (Session["Taikhoanadmin"] != null)
                             {
-                              @*  <script>
-                                        alert("Chào mừng @Session["Admin"] đã quay trở lại!");
-                                </script> *@
+                                @*  <script>
+                                            alert("Chào mừng @Session["Admin"] đã quay trở lại!");
+                                    </script> *@
 
                                 <div class="btn-group">
                                     <a href="" class="btn btn-primary">@Session["Admin"]</a>
@@ -255,5 +255,8 @@
     <!--Custom JavaScript -->
     <script src="~/www/js/dashboard1.js"></script>
     <script src="~/www/js/custom.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
